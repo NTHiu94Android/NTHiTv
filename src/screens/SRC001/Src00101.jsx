@@ -7,14 +7,55 @@ import { useSelector } from 'react-redux';
 import TTLoading from '../../components/TTLoading';
 import ECTab from '../../components/ECTab';
 import Src0010101 from './Components/Src0010101';
+import CustomAxios from '../../helpers/FetchApi';
 
 const Src00101 = () => {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
+  const [lstType, setLstType] = useState([]);
 
   useEffect(() => {
-
+    const fetchDatas = async () => {
+      // setIsLoading(true);
+      CustomAxios().post("/api/exec-no-auth", {
+        pro: 'NTH_MV_SEL_LTP_001',
+        data: []
+      })
+        .then(res => {
+          if (res.data && res.data[0]) {
+            console.log(res.data[0]);
+            const lst0 = [{
+              id: 0,
+              name: 'Đề xuất',
+              count: null,
+              code: 'ALL',
+              screen: <Src0010101 type={'ALL'} />,
+            }];
+            const lst1 = res.data[0].map((item, index) => {
+              return {
+                id: index + 1,
+                name: item.code_nm,
+                count: null,
+                code: item.code,
+                screen: <Src0010101 type={item.code} />,
+              }
+            });
+            setLstType(lst0.concat(lst1));
+          }
+          setIsLoading(false);
+        })
+        .catch(err => {
+          console.log(err);
+          setIsLoading(false);
+        });
+    };
+    fetchDatas();
   }, []);
+
+  const fetchDataScreen = (code) => {
+    console.log('code', code);
+    
+  };
 
   return (
     <View style={{ backgroundColor: Color.backgroundColor, flex: 1 }}>
@@ -73,36 +114,17 @@ const Src00101 = () => {
           </Pressable>
         </View>
 
-        <ECTab
-          fullTab={false}
-          scrollEnabled={true}
-          data={[
-            {
-              id: 0,
-              name: 'Đề xuất',
-              count: null,
-              screen: <Src0010101 type={0} />,
-            },
-            {
-              id: 1,
-              name: 'Phim bộ',
-              count: null,
-              screen: <Src0010101 type={1} />,
-            },
-            {
-              id: 2,
-              name: 'Phim lẻ',
-              count: null,
-              screen: <Src0010101 type={2} />,
-            },
-            {
-              id: 3,
-              name: 'Phim hoạt hình',
-              count: null,
-              screen: <Src0010101 type={3} />,
-            }
-          ]}
-        />
+        {/* Tab */}
+        {lstType && lstType.length > 0 && (
+          <ECTab
+            fullTab={false}
+            scrollEnabled={true}
+            onChangeTab={(tabId, code) => { 
+              fetchDataScreen(code);
+            }}
+            data={lstType}
+          />
+        )}
 
       </View>
     </View>

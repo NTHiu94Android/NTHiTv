@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, RefreshControl, } from 'react-native';
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 
 const Src0010101 = ({ type }) => {
@@ -9,6 +9,10 @@ const Src0010101 = ({ type }) => {
         setTimeout(() => {
             setRefreshing(false);
         }, 2000);
+    }, []);
+
+    useEffect(() => {
+        console.log('type', type);
     }, []);
 
     return (
@@ -25,7 +29,11 @@ const Src0010101 = ({ type }) => {
                 />
             }
         >
-            <Text>Src0010101</Text>
+            <Text style={{
+                color: 'white',
+                fontSize: 20,
+                textAlign: 'center',
+            }}>Src0010101</Text>
         </ScrollView>
     )
 }

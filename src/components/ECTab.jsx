@@ -64,7 +64,7 @@ const ECTab = ({
                   }
                   flatlistRef.current.scrollToIndex({ index });
                   setCurrentTab(item.id);
-                  onChangeTab && onChangeTab(item.id);
+                  onChangeTab && onChangeTab(item.id, item.code);
                 }}>
                 <View style={{
                   flex: 1,
