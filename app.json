@@ -1,0 +1,8 @@
+{
+  "name": "NTHiTV",
+  "displayName": "NTHiTV",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-9668910249174030~8026312526",
+    "ios_app_id": "ca-app-pub-9668910249174030~8026312526"
+  }
+}

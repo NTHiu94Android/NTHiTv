@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "943917461015",
+    "firebase_url": "https://zalo-fake-default-rtdb.firebaseio.com",
+    "project_id": "zalo-fake",
+    "storage_bucket": "zalo-fake.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943917461015:android:6dfa89e27b7fa5bb92f652",
+        "android_client_info": {
+          "package_name": "com.nthitv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943917461015-0kcditec2dmiaa4385cc1jv1j2fl4k13.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nthitv",
+            "certificate_hash": "ac50514ea0a97cdd1c21f335ae0a42c52da13c6a"
+          }
+        },
+        {
+          "client_id": "943917461015-drpv0cpnnfna3ikl8nfc3idbncdkjl92.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwmsc8ZPCX8GykseZBL8DC_c5Kegk_bL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943917461015-96d7rjl0868k3s5ric7d4mk9r8j78of4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
