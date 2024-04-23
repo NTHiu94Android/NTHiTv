@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
 import TTLoading from '../../components/TTLoading';
 import ECTab from '../../components/ECTab';
-import Src0010101 from './Components/Src0010101';
+import Src0010101 from '../components/Src0010101';
 import CustomAxios from '../../helpers/FetchApi';
 
 const Src00101 = () => {
@@ -52,11 +52,6 @@ const Src00101 = () => {
     fetchDatas();
   }, []);
 
-  const fetchDataScreen = (code) => {
-    console.log('code', code);
-    
-  };
-
   return (
     <View style={{ backgroundColor: Color.backgroundColor, flex: 1 }}>
       <StatusBar
@@ -66,23 +61,27 @@ const Src00101 = () => {
       />
       {isLoading && (<TTLoading />)}
       {/* Header */}
-      <View style={{ flex: 1, paddingTop: 30, padding: 10 }}>
+      <View style={{ flex: 1, paddingTop: 30, }}>
         <View style={{
           alignItems: 'center',
           flexDirection: 'row',
           display: 'flex',
           height: 40,
+          paddingHorizontal: 10,
         }}>
           <Image
             source={require('../../assest/images/logo_iqiyi.png')}
-            style={{ width: 50, height: '100%', resizeMode: 'contain' }}
+            resizeMode='contain'
+            style={{ width: 40, height: '100%', }}
           />
+
           <Pressable
             onPress={() => { console.log('search') }}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              marginHorizontal: 10,
+              marginHorizontal: 5,
+              marginRight: 8,
               backgroundColor: 'white',
               borderRadius: 8,
               flex: 1,
@@ -119,8 +118,8 @@ const Src00101 = () => {
           <ECTab
             fullTab={false}
             scrollEnabled={true}
-            onChangeTab={(tabId, code) => { 
-              fetchDataScreen(code);
+            onChangeTab={(tabId, code) => {
+              // fetchDataScreen(code);
             }}
             data={lstType}
           />
