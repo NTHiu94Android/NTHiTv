@@ -52,6 +52,7 @@ const Src0010101 = ({ type }) => {
         const lstTemp = [];
         dataHot.map((item, index) => {
             const it = {
+                _id: item._id,
                 image_url: item.image_url,
             }
             lstTemp.push(it);
@@ -63,7 +64,7 @@ const Src0010101 = ({ type }) => {
     const fetchDataScreen = (code) => {
         console.log('code', code);
         CustomAxios().post("/api/exec-no-auth", {
-            pro: 'NTH_MV_SEL_LMV_001',
+            pro: 'NTH_MV_SEL_MVL_001',
             data: [code]
         })
             .then(res => {
@@ -117,20 +118,22 @@ const Src0010101 = ({ type }) => {
                             borderRadius: 4,
                             overflow: 'hidden'
                         }}>
-                            {/* <FlatListSlider
+                            <FlatListSlider
                                 data={lstHot}
                                 imageKey={'image_url'}
-                                timer={2000}
+                                timer={4000}
                                 height={400}
                                 // component={}
-                                onPress={item => console.log(JSON.stringify(item))}
+                                onPress={item => {
+                                    navigation.navigate("SRC00201", {movie_id: lstHot[item]._id})
+                                }}
                                 contentContainerStyle={{}}
                                 indicatorContainerStyle={{ position: 'absolute', bottom: 10 }}
                                 indicatorActiveColor={'#8e44ad'}
                                 indicatorInActiveColor={'#ffffff'}
                                 indicatorActiveWidth={30}
                                 animation
-                            /> */}
+                            />
 
                             <View style={{
                                 position: 'absolute',
@@ -144,7 +147,7 @@ const Src0010101 = ({ type }) => {
                                 <Icon name={'play'} size={20} color={'white'} />
                             </View>
 
-                            <LinearGradient
+                            {/* <LinearGradient
                                 colors={[
                                     'rgba(0,0,0,0.6)',
                                     'rgba(0,0,0,0)',
@@ -160,7 +163,7 @@ const Src0010101 = ({ type }) => {
                                     justifyContent: 'center',
                                     alignItems: 'center',
                                 }}>
-                            </LinearGradient>
+                            </LinearGradient> */}
                         </View>
                     )}
                     {/* List phim */}
@@ -228,7 +231,7 @@ const Src0010101 = ({ type }) => {
                                             pay_code={item.pay_code}
                                             release_code={item.release_code}
                                             episode_count={item.episode_count}
-                                            onPress={() => { console.log('item', item) }}
+                                            onPress={() => { navigation.navigate("SRC00201", {movie_id: item._id}) }}
                                         />
                                     </View>
                                 )}
@@ -259,7 +262,7 @@ const Src0010101 = ({ type }) => {
                                                     pay_code={item.pay_code}
                                                     release_code={item.release_code}
                                                     episode_count={item.episode_count}
-                                                    onPress={() => { console.log('item', item) }}
+                                                    onPress={() => { navigation.navigate("SRC00201", {movie_id: item._id}) }}
                                                 />
                                             </View>
                                         )
@@ -301,7 +304,7 @@ const Src0010101 = ({ type }) => {
                                             pay_code={item.pay_code}
                                             release_code={item.release_code}
                                             episode_count={item.episode_count}
-                                            onPress={() => { console.log('item', item) }}
+                                            onPress={() => { navigation.navigate("SRC00201", {movie_id: item._id}) }}
                                         />
                                     </View>
                                 )}
@@ -332,7 +335,7 @@ const Src0010101 = ({ type }) => {
                                                     pay_code={item.pay_code}
                                                     release_code={item.release_code}
                                                     episode_count={item.episode_count}
-                                                    onPress={() => { console.log('item', item) }}
+                                                    onPress={() => { navigation.navigate("SRC00201", {movie_id: item._id}) }}
                                                 />
                                             </View>
                                         )
