@@ -50,7 +50,7 @@ const SRC001 = () => {
           if (route.name === 'Trang chủ') {
             iconName = focused
               ? 'home' : 'home';
-          } else if (route.name === 'Danh sách') {
+          } else if (route.name === 'Kho phim') {
             iconName = focused
               ? 'video-collection' : 'video-collection';
           } else if (route.name === 'Yêu thích') {
@@ -74,7 +74,7 @@ const SRC001 = () => {
       })}
     >
       <Tab.Screen options={{ headerShown: false }} name="Trang chủ" component={Src00101} />
-      <Tab.Screen options={{ headerShown: false }} name="Danh sách" component={Src00102} />
+      <Tab.Screen options={{ headerShown: false }} name="Kho phim" component={Src00102} />
       <Tab.Screen options={{ headerShown: false }} name="Yêu thích" component={Src00103} />
       <Tab.Screen options={{ headerShown: false }} name="Cá nhân" component={Src00104} />
     </Tab.Navigator>

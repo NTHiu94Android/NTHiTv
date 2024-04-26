@@ -34,7 +34,6 @@ const Src0010101 = ({ type }) => {
     }, []);
 
     useEffect(() => {
-        console.log('type', type);
         // fetchDataScreen(type);
         setLstPhimVip(dataHot);
         setLstPhimFree(dataHot);
@@ -110,24 +109,19 @@ const Src0010101 = ({ type }) => {
                     onRefresh={onRefresh} />
             }>
             {type && type == 'ALL' ? (
-                <View style={{flex: 1}}>
+                <View style={{ flex: 1 }}>
                     {/* Slider */}
                     {lstHot && lstHot.length > 0 && (
-                        <View style={{
-                            marginHorizontal: 10,
-                            borderRadius: 4,
-                            overflow: 'hidden'
-                        }}>
+                        <View style={{ marginHorizontal: 10, borderRadius: 4, overflow: 'hidden' }}>
                             <FlatListSlider
                                 data={lstHot}
                                 imageKey={'image_url'}
                                 timer={4000}
                                 height={400}
                                 // component={}
-                                onPress={item => {
-                                    navigation.navigate("SRC00201", {movie_id: lstHot[item]._id})
-                                }}
-                                contentContainerStyle={{}}
+                                onPress={item => {navigation.navigate("SRC00201", {movie_id: lstHot[item]._id})}}
+                                contentContainerStyle={{resizeMode: 'cover'}}
+                                style={{resizeMode: 'cover'}}
                                 indicatorContainerStyle={{ position: 'absolute', bottom: 10 }}
                                 indicatorActiveColor={'#8e44ad'}
                                 indicatorInActiveColor={'#ffffff'}
@@ -137,31 +131,19 @@ const Src0010101 = ({ type }) => {
 
                             <View style={{
                                 position: 'absolute',
-                                bottom: 10,
-                                right: 10,
-                                padding: 10,
-                                borderRadius: 30,
-                                zIndex: 999,
+                                bottom: 10, right: 10, padding: 10,
+                                borderRadius: 30, zIndex: 999,
                                 backgroundColor: Color.mainColor
                             }}>
                                 <Icon name={'play'} size={20} color={'white'} />
                             </View>
 
                             {/* <LinearGradient
-                                colors={[
-                                    'rgba(0,0,0,0.6)',
-                                    'rgba(0,0,0,0)',
-                                    'rgba(0,0,0,0.6)',
-                                ]}
+                                colors={['rgba(0,0,0,0.6)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.6)']}
                                 style={{
-                                    position: 'absolute',
-                                    left: 0,
-                                    right: 0,
-                                    bottom: 0,
-                                    top: 0,
-                                    zIndex: 1,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
+                                    position: 'absolute', zIndex: 1,
+                                    left: 0, right: 0, bottom: 0, top: 0,
+                                    justifyContent: 'center', alignItems: 'center',
                                 }}>
                             </LinearGradient> */}
                         </View>
@@ -173,11 +155,7 @@ const Src0010101 = ({ type }) => {
                             <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold', marginVertical: 5 }}>
                                 Phim thịnh hành trên NTHiTv
                             </Text>
-                            <View style={{
-                                flexDirection: 'row',
-                                flexWrap: 'wrap',
-                                justifyContent: 'space-between',
-                            }}>
+                            <View style={{flexDirection: 'row', flexWrap: 'wrap',}}>
                                 {lstPhimVip && lstPhimVip.length > 0 && (
                                     lstPhimVip.map((item, index) => {
                                         return (
@@ -189,7 +167,7 @@ const Src0010101 = ({ type }) => {
                                                     pay_code={item.pay_code}
                                                     release_code={item.release_code}
                                                     episode_count={item.episode_count}
-                                                    onPress={() => { navigation.navigate("SRC00201", {movie_id: item._id})}}
+                                                    onPress={() => { navigation.navigate("SRC00201", { movie_id: item._id }) }}
                                                 />
                                             </View>
                                         )
@@ -220,10 +198,7 @@ const Src0010101 = ({ type }) => {
                             <FlatList
                                 data={lstPhimFree}
                                 renderItem={({ item }) => (
-                                    <View style={{
-                                        width: 120,
-                                        padding: 2,
-                                    }}>
+                                    <View style={{ width: 120, padding: 2, }}>
                                         <MVItem
                                             image_url={item.image_url}
                                             name={item.name}
@@ -231,7 +206,7 @@ const Src0010101 = ({ type }) => {
                                             pay_code={item.pay_code}
                                             release_code={item.release_code}
                                             episode_count={item.episode_count}
-                                            onPress={() => { navigation.navigate("SRC00201", {movie_id: item._id}) }}
+                                            onPress={() => { navigation.navigate("SRC00201", { movie_id: item._id }) }}
                                         />
                                     </View>
                                 )}
@@ -246,11 +221,7 @@ const Src0010101 = ({ type }) => {
                             <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold', marginVertical: 5 }}>
                                 Danh sách phim bộ chọn lọc trên NTHiTv
                             </Text>
-                            <View style={{
-                                flexDirection: 'row',
-                                flexWrap: 'wrap',
-                                justifyContent: 'space-between',
-                            }}>
+                            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                                 {lstPhimBo && lstPhimBo.length > 0 && (
                                     lstPhimBo.map((item, index) => {
                                         return (
@@ -262,7 +233,7 @@ const Src0010101 = ({ type }) => {
                                                     pay_code={item.pay_code}
                                                     release_code={item.release_code}
                                                     episode_count={item.episode_count}
-                                                    onPress={() => { navigation.navigate("SRC00201", {movie_id: item._id}) }}
+                                                    onPress={() => { navigation.navigate("SRC00201", { movie_id: item._id }) }}
                                                 />
                                             </View>
                                         )
@@ -293,10 +264,7 @@ const Src0010101 = ({ type }) => {
                             <FlatList
                                 data={lstPhimLe}
                                 renderItem={({ item }) => (
-                                    <View style={{
-                                        width: 120,
-                                        padding: 2,
-                                    }}>
+                                    <View style={{ width: 120, padding: 2 }}>
                                         <MVItem
                                             image_url={item.image_url}
                                             name={item.name}
@@ -304,7 +272,7 @@ const Src0010101 = ({ type }) => {
                                             pay_code={item.pay_code}
                                             release_code={item.release_code}
                                             episode_count={item.episode_count}
-                                            onPress={() => { navigation.navigate("SRC00201", {movie_id: item._id}) }}
+                                            onPress={() => { navigation.navigate("SRC00201", { movie_id: item._id }) }}
                                         />
                                     </View>
                                 )}
@@ -319,11 +287,7 @@ const Src0010101 = ({ type }) => {
                             <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold', marginVertical: 5 }}>
                                 Danh sách phim hoạt hình ưa thích trên NTHiTv
                             </Text>
-                            <View style={{
-                                flexDirection: 'row',
-                                flexWrap: 'wrap',
-                                justifyContent: 'space-between',
-                            }}>
+                            <View style={{flexDirection: 'row', flexWrap: 'wrap',}}>
                                 {lstPhimHoatHinh && lstPhimHoatHinh.length > 0 && (
                                     lstPhimHoatHinh.map((item, index) => {
                                         return (
@@ -335,7 +299,7 @@ const Src0010101 = ({ type }) => {
                                                     pay_code={item.pay_code}
                                                     release_code={item.release_code}
                                                     episode_count={item.episode_count}
-                                                    onPress={() => { navigation.navigate("SRC00201", {movie_id: item._id}) }}
+                                                    onPress={() => { navigation.navigate("SRC00201", { movie_id: item._id }) }}
                                                 />
                                             </View>
                                         )
@@ -360,14 +324,10 @@ const Src0010101 = ({ type }) => {
                     </View>
                 </View>
             ) : (
-                <View style={{flex: 1, minHeight: 500}}>
+                <View style={{ flex: 1, minHeight: 500 }}>
                     {/* Slider */}
                     {lstHot && lstHot.length > 0 && (
-                        <View style={{
-                            marginHorizontal: 10,
-                            borderRadius: 4,
-                            overflow: 'hidden'
-                        }}>
+                        <View style={{marginHorizontal: 10,borderRadius: 4,overflow: 'hidden'}}>
                             <FlatListSlider
                                 data={lstHot}
                                 imageKey={'image_url'}
@@ -376,7 +336,7 @@ const Src0010101 = ({ type }) => {
                                 // component={}
                                 onPress={item => console.log(JSON.stringify(item))}
                                 contentContainerStyle={{}}
-                                indicatorContainerStyle={{ position: 'absolute', bottom: 10, zIndex: 999}}
+                                indicatorContainerStyle={{ position: 'absolute', bottom: 10, zIndex: 999 }}
                                 indicatorActiveColor={Color.mainColor}
                                 indicatorInActiveColor={'#ffffff'}
                                 indicatorActiveWidth={30}
@@ -384,32 +344,19 @@ const Src0010101 = ({ type }) => {
                             />
 
                             <View style={{
-                                position: 'absolute',
-                                bottom: 10,
-                                right: 10,
-                                padding: 10,
-                                borderRadius: 30,
-                                zIndex: 999,
-                                backgroundColor: Color.mainColor
+                                position: 'absolute', bottom: 10, right: 10,
+                                padding: 10, borderRadius: 30,
+                                zIndex: 999, backgroundColor: Color.mainColor
                             }}>
                                 <Icon name={'play'} size={20} color={'white'} />
                             </View>
 
                             <LinearGradient
-                                colors={[
-                                    'rgba(0,0,0,0.6)',
-                                    'rgba(0,0,0,0)',
-                                    'rgba(0,0,0,0.6)',
-                                ]}
+                                colors={['rgba(0,0,0,0.6)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.6)']}
                                 style={{
-                                    position: 'absolute',
-                                    left: 0,
-                                    right: 0,
-                                    bottom: 0,
-                                    top: 0,
-                                    zIndex: 1,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
+                                    position: 'absolute', zIndex: 1,
+                                    left: 0, right: 0, bottom: 0, top: 0,
+                                    justifyContent: 'center', alignItems: 'center',
                                 }}>
                             </LinearGradient>
                         </View>
@@ -419,24 +366,15 @@ const Src0010101 = ({ type }) => {
 
             <ImageBackground
                 source={require('../../assest/images/bg_mv.jpg')}
-                style={{
-                    height: 200,
-                    width: '100%',
-                    marginTop: 20,
-                }}
+                style={{ height: 200, width: '100%', marginTop: 20, }}
                 resizeMode='cover'
             >
                 <LinearGradient
                     colors={['rgba(0,0,0,1)', 'rgba(0,0,0,0.7)', 'rgba(0,0,0,0.4)']}
                     style={{
-                        position: 'absolute',
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        top: 0,
-                        zIndex: 1,
-                        justifyContent: 'center',
-                        alignItems: 'center',
+                        position: 'absolute', zIndex: 1,
+                        left: 0, right: 0, bottom: 0, top: 0,
+                        justifyContent: 'center', alignItems: 'center',
                     }}>
                     <View style={{
                         alignItems: 'center',
@@ -458,11 +396,7 @@ const Src0010101 = ({ type }) => {
                             marginTop: 8,
                             paddingHorizontal: 10,
                         }}>
-                            <Text style={{
-                                color: '#333',
-                                fontSize: 13,
-                                fontWeight: 'bold',
-                            }}>
+                            <Text style={{color: '#333',fontSize: 13,fontWeight: 'bold' }}>
                                 Tìm kiếm nhiều nội dung hơn nữa
                             </Text>
                         </Pressable>

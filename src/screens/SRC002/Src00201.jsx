@@ -12,6 +12,7 @@ import CustomAxios from '../../helpers/FetchApi';
 import Loading from '../../components/TTLoading';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import VideoView from 'react-native-easy-video';
+import Video from 'react-native-video';
 import MVItem from '../components/MVItem';
 import LinearGradient from 'react-native-linear-gradient';
 

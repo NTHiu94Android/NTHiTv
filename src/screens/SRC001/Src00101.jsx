@@ -18,12 +18,11 @@ const Src00101 = () => {
     const fetchDatas = async () => {
       // setIsLoading(true);
       CustomAxios().post("/api/exec-no-auth", {
-        pro: 'NTH_MV_SEL_LTP_001',
+        pro: 'NTH_MV_SEL_TPE_001',
         data: []
       })
         .then(res => {
           if (res.data && res.data[0]) {
-            console.log(res.data[0]);
             const lst0 = [{
               id: 0,
               name: 'Đề xuất',
@@ -118,9 +117,7 @@ const Src00101 = () => {
           <ECTab
             fullTab={false}
             scrollEnabled={true}
-            onChangeTab={(tabId, code) => {
-              // fetchDataScreen(code);
-            }}
+            onChangeTab={(tabId) => {}}
             data={lstType}
           />
         )}

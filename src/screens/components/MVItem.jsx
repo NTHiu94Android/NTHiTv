@@ -16,8 +16,6 @@ const MVItem = ({
         <Pressable
             onPress={onPress}
             style={{
-                justifyContent: 'center',
-                alignItems: 'center',
                 borderRadius: 4,
                 overflow: 'hidden',
                 width: '100%', height: 200,
@@ -75,7 +73,7 @@ const MVItem = ({
                 </LinearGradient>
             </View>
 
-            <Text numberOfLines={2}
+            <Text numberOfLines={1}
                 style={{ color: 'white', fontSize: 12, marginTop: 5, }}
             >{name}</Text>
 

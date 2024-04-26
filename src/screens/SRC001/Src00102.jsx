@@ -1,195 +1,106 @@
-import { View, Alert } from 'react-native'
-import React, { useState, useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import TTHeader from '../../components/TTHeader';
+import { Text, View, StatusBar } from 'react-native'
+import React, { useEffect, useState } from 'react';
 import Color from '../../assest/colors';
-import { USER, REFRESH_TOKEN } from '../../constants';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useDispatch, useSelector } from 'react-redux';
-import {UD_LST_PRD_TOTAL} from '../../redux/actions';
-import CustomAxios from '../../helpers/FetchApi';
 import TTLoading from '../../components/TTLoading';
-import TTButton from '../../components/TTButton';
 import ECTab from '../../components/ECTab';
-import RefreshToken from '../../helpers/RefreshToken';
+import CustomAxios from '../../helpers/FetchApi';
+import Src0010201 from '../components/Src0010201';
 
 const Src00102 = () => {
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const customerState = useSelector(state => state.updateCustomerReducer.customer);
-  const lstPrdTotal = useSelector(state => state.updateListProductTotalReducer);
-  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [lstType, setLstType] = useState([]);
 
   useEffect(() => {
-    const getData = async () => {
-      const userLocal = await AsyncStorage.getItem(USER);
-      if (userLocal) {
-        if(customerState && customerState.pk){
-          fetchDataProduct(customerState.pk, userLocal.pk);
-        }
-      }
+    const fetchDatas = async () => {
+      //-----Lay danh sach phim
+      CustomAxios().post("/api/exec-no-auth", {
+        pro: 'NTH_MV_SEL_MVL_001',
+        data: ['ALL']
+      })
+        .then(res => {
+          if (res && res.error) {
+            console.log(res.error);
+            return;
+          }
+          if (res && res.data) {
+            const lstPhimBo = res.data[3] ? res.data[3] : [];
+            const lstPhimLe = res.data[4] ? res.data[4] : [];
+            const lstPhimHoatHinh = res.data[5] ? res.data[5] : [];
+            fetchDataFillter([lstPhimBo, lstPhimLe, lstPhimHoatHinh]);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
     };
-    getData();
+    // fetchDatas();
+    fetchDataFillter();
   }, []);
 
-  const fetchDataProduct = async (customerPk, userPk) => { 
-    CustomAxios().post('/api/exec-auth', {
-      pro: 'EC_SYS_MBI_SEL_PROD001_001_0',
-      data: [customerPk] 
+  //--------------- Lay danh sach filter -------------------
+  const fetchDataFillter = () => {
+    CustomAxios().post("/api/exec-no-auth", {
+      pro: 'NTH_MV_SEL_TPE_001',
+      data: []
     })
       .then(res => {
-        if (!res) {
-          Alert.alert('Thông báo', 'Có lỗi xảy ra, vui lòng thử lại sau');
-        }
-        if (res.error) {
-          Alert.alert('Thông báo', res.message);
-        }
-        if (res.message == 'Token expired') {
-          RefreshToken({
-            token: REFRESH_TOKEN,
-            username: userPk,
-            calback: () => { fetchDataProduct(customerPk, userPk) },
-            logout: async () => {
-              await AsyncStorage.clear();
-              navigation.reset({ index: 0, routes: [{ name: "SRC00001" }] });
+        if (res.data && res.data[0]) {
+          console.log(res.data[0]);
+          const lst1 = res.data[0].map((item, index) => {
+            const lstArea0 = [{ code: 'ALL_AREA', code_nm: 'Tất cả khu vực' }]
+            const lstArea = [...lstArea0, ...(res.data[1] ? res.data[1] : [])];
+            const lstGenge0 = [{ code: 'ALL_GENGE', code_nm: 'Tất cả thể loại' }]
+            const lstGenge = [...lstGenge0, ...(res.data[2] ? res.data[2] : [])];
+            const lstYear0 = [{ code: 'ALL_YEAR', code_nm: 'Tất cả năm' }]
+            const lstYear = [...lstYear0, ...(res.data[3] ? res.data[3] : [])];
+            const lstPay0 = [{ code: 'ALL_PAY', code_nm: 'Tất cả phí' }]
+            const lstPay = [...lstPay0, ...(res.data[4] ? res.data[4] : [])];
+            const lstRelease0 = [{ code: 'ALL_RELEASE', code_nm: 'Tất cả tình trạng' }]
+            const lstRelease = [...lstRelease0, ...(res.data[5] ? res.data[5] : [])];
+            const lstFilter = [lstArea, lstGenge, lstYear, lstPay, lstRelease];
+            return {
+              id: index,
+              name: item.code_nm,
+              count: null,
+              code: item.code,
+              screen: <Src0010201 type={item.code} dataFilter={lstFilter}/>,
             }
-          }); 
-          return;
+          });
+          setLstType(lst1);
         }
-        if (res.data && res.data.length > 0) {
-          const payload = {
-            totalDHD: res.data[0][0].total,
-            totalCITK: res.data[1][0].total,
-            totalBHNY: res.data[2][0].total,
-            totalDXD: res.data[3][0].total,
-            totalKTC: res.data[4][0].total,
-            totalDB: res.data[5][0].total 
-          }
-          dispatch({ type: UD_LST_PRD_TOTAL, payload: payload });
-        } else {
-          Alert.alert('Thông báo', 'Không tìm thấy thông tin');
-        }
+        setIsLoading(false);
       })
       .catch(err => {
-        console.log('Error: ', err);
+        console.log(err);
+        setIsLoading(false);
       });
   };
 
   return (
     <View style={{ backgroundColor: Color.backgroundColor, flex: 1 }}>
-      <TTHeader
-        hasTitleLeft={true}
-        titleLeft='Sản phẩm'
-        width='100%'
-        hasIconRight1={true}
-        iconRight1='search'
-        iconRightOnPress={() => {
-          console.log('Search');
-        }}
+      <StatusBar
+        translucent={true}
+        backgroundColor={"transparent"}
+        barStyle="light-content"
       />
-      
-      <ECTab
-        fullTab={false}
-        scrollEnabled={true}
-        hasIcon={true}
-        iconName='filter-outline'
-        iconOnPress={() => {
-          console.log('Icon');
-        }}
-        data={[
-          {
-            id: 0,
-            name: 'Đang hoạt động',
-            count: lstPrdTotal.totalDHD ? lstPrdTotal.totalDHD : 0,
-            screen: <View style={{
-              flex: 1,
-              backgroundColor: 'yellow'
-            }} />,
-          },
-          {
-            id: 1,
-            name: 'Còn ít tồn kho',
-            count: lstPrdTotal.totalCITK ? lstPrdTotal.totalCITK : 0,
-            screen: <View style={{
-              flex: 1,
-              backgroundColor: 'red'
-            }} />,
-          },
-          {
-            id: 2,
-            name: 'Bị hủy niêm yết',
-            count: lstPrdTotal.totalBHNY ? lstPrdTotal.totalBHNY : 0,
-            screen: <View style={{
-              flex: 1,
-              backgroundColor: 'purple'
-            }} />,
-          },
-          {
-            id: 3,
-            name: 'Đang xét duyệt',
-            count: lstPrdTotal.totalDXD ? lstPrdTotal.totalDXD : 0,
-            screen: <View style={{
-              flex: 1,
-              backgroundColor: 'blue'
-            }} />,
-          },
-          {
-            id: 4,
-            name: 'Không thành công',
-            count: lstPrdTotal.totalKTC ? lstPrdTotal.totalKTC : 0,
-            screen: <View style={{
-              flex: 1,
-              backgroundColor: 'blue'
-            }} />,
-          },
-          {
-            id: 5,
-            name: 'Đóng băng',
-            count: lstPrdTotal.totalDB ? lstPrdTotal.totalDB : 0,
-            screen: <View style={{
-              flex: 1,
-              backgroundColor: 'blue'
-            }} />,
-          },
-        ]}
-      />
-      {/* {data.length > 0 ? (
-        <View style={{ flex: 1 }}>
+      {isLoading && (<TTLoading />)}
+      <View style={{ flex: 1, paddingTop: 30, }}>
+        <Text style={{
+          color: Color.white, fontSize: 20, fontWeight: 'bold',
+          paddingHorizontal: 10, marginBottom: 10
+        }}>Kho phim</Text>
 
-        </View>
-      ) : (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Image
-            source={require('../../assest/images/ic_package.png')}
-            style={{ width: 200, height: 200 }}
-            resizeMethod='contain'
+        {/* Tab */}
+        {lstType && lstType.length > 0 && (
+          <ECTab
+            fullTab={false}
+            hasBottomLine={true}
+            scrollEnabled={true}
+            onChangeTab={(tabId) => { }}
+            data={lstType}
           />
-          <Text style={{ marginTop: 10, fontWeight: 'bold' }}>
-            Không có sản phẩm nào
-          </Text>
-          <Text style={{ fontSize: 12, marginTop: 5, marginBottom: 10 }}>
-            Thêm sản phẩm đầu tiên của bạn
-          </Text>
-
-          <TTButton
-            width={200}
-            height={50}
-            hasIcon={true}
-            icon='add'
-            iconSize={20}
-            iconColor={Color.white}
-            value='Thêm sản phẩm'
-            onPress={() => {
-              console.log('Thêm sản phẩm');
-            }}
-            backgroundColor={Color.mainColor}
-            textColor={Color.white}
-          />
-        </View>
-
-      )} */}
-
+        )}
+      </View>
     </View>
   )
 }

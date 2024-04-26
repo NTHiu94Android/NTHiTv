@@ -64,13 +64,15 @@ const ECTab = ({
                   }
                   flatlistRef.current.scrollToIndex({ index });
                   setCurrentTab(item.id);
-                  onChangeTab && onChangeTab(item.id, item.code);
+                  onChangeTab && onChangeTab(item.id);
                 }}>
                 <View style={{
                   flex: 1,
                   justifyContent: 'center',
                   alignItems: 'center',
                   height: 30,
+                  borderBottomColor: item.id === currentTab && hasBottomLine ? Color.mainColor : Color.backgroundColor,
+                  borderBottomWidth: item.id === currentTab && hasBottomLine ? 1.5 : 0,
                 }}>
                   <Text style={{
                     fontWeight: 'bold',
@@ -104,7 +106,7 @@ const ECTab = ({
                 ) : null}
               </TouchableOpacity>
               {/* Bottom line */}
-              {hasBottomLine && (
+              {/* {hasBottomLine && (
                 <View style={{
                   justifyContent: 'center',
                   alignItems: 'center',
@@ -115,12 +117,12 @@ const ECTab = ({
                     borderRadius: 30,
                     backgroundColor: item.id === currentTab
                       ? item.bottomColor != null
-                        ? item.bottomColor
+                        ? Color.backgroundColor
                         : Color.mainColor
                       : Color.backgroundColor,
                   }} />
                 </View>
-              )}
+              )} */}
 
             </View>
 
