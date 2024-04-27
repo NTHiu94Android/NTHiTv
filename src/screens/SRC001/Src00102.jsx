@@ -5,8 +5,11 @@ import TTLoading from '../../components/TTLoading';
 import ECTab from '../../components/ECTab';
 import CustomAxios from '../../helpers/FetchApi';
 import Src0010201 from '../components/Src0010201';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
 
 const Src00102 = () => {
+  const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
   const [lstType, setLstType] = useState([]);
 
@@ -45,7 +48,7 @@ const Src00102 = () => {
     })
       .then(res => {
         if (res.data && res.data[0]) {
-          console.log(res.data[0]);
+          // console.log(res.data[0]);
           const lst1 = res.data[0].map((item, index) => {
             const lstArea0 = [{ code: 'ALL_AREA', code_nm: 'Tất cả khu vực' }]
             const lstArea = [...lstArea0, ...(res.data[1] ? res.data[1] : [])];
@@ -63,7 +66,7 @@ const Src00102 = () => {
               name: item.code_nm,
               count: null,
               code: item.code,
-              screen: <Src0010201 type={item.code} dataFilter={lstFilter}/>,
+              screen: <Src0010201 type={item.code} dataFilter={lstFilter} />,
             }
           });
           setLstType(lst1);
@@ -85,10 +88,24 @@ const Src00102 = () => {
       />
       {isLoading && (<TTLoading />)}
       <View style={{ flex: 1, paddingTop: 30, }}>
-        <Text style={{
-          color: Color.white, fontSize: 20, fontWeight: 'bold',
-          paddingHorizontal: 10, marginBottom: 10
-        }}>Kho phim</Text>
+        <View style={{ 
+          flexDirection: 'row', 
+          justifyContent: 'space-between', 
+          alignItems: 'center', paddingHorizontal: 10,
+          marginBottom: 10
+        }}>
+          <Text style={{
+            color: Color.white, 
+            fontSize: 20, fontWeight: 'bold',
+          }}>Kho phim</Text>
+          <Icon
+            name="magnify"
+            size={30}
+            color={Color.white}
+            onPress={() => navigation.navigate('SRC00202')}
+            style={{ }}/>
+        </View>
+
 
         {/* Tab */}
         {lstType && lstType.length > 0 && (

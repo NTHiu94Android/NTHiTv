@@ -14,10 +14,10 @@ import Color from './src/assest/colors';
 //Screens
 import SRC00001 from './src/screens/SRC000/Src00001'; //Login
 import SRC00002 from './src/screens/SRC000/Src00002'; //Register
-import SRC001 from './src/screens/SRC001';
-import SRC00201 from './src/screens/SRC002/Src00201'; //Xac minh tai lieu
-import SRC00202 from './src/screens/SRC002/Src00202'; //Them san pham
-import SRC00203 from './src/screens/SRC002/Src00203'; //Xem video quy trinh ban hang
+import SRC001 from './src/screens/SRC001';            //Home
+import SRC00201 from './src/screens/SRC002/Src00201'; //Movie detail
+import SRC00202 from './src/screens/SRC002/Src00202'; //Search movie
+import SRC00203 from './src/screens/SRC002/Src00203'; //
 //Create Stack 
 const Stack = createStackNavigator();
 

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Color from '../../assest/colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useSelector } from 'react-redux';
 import TTLoading from '../../components/TTLoading';
 import ECTab from '../../components/ECTab';
 import Src0010101 from '../components/Src0010101';
@@ -75,7 +74,7 @@ const Src00101 = () => {
           />
 
           <Pressable
-            onPress={() => { console.log('search') }}
+            onPress={() => navigation.navigate('SRC00202')}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -88,12 +87,12 @@ const Src00101 = () => {
             }}
           >
             <View style={{ flex: 1, paddingHorizontal: 10 }}>
-              <Text style={{ color: '#999', fontSize: 13, fontWeight: '700' }}>
+              <Text style={{ color: '#666', fontSize: 13 }}>
                 Tìm kiếm
               </Text>
             </View>
             <View style={{ paddingHorizontal: 10, }}>
-              <Icon name="magnify" size={20} color="#999" />
+              <Icon name="magnify" size={20} color="#666" />
             </View>
           </Pressable>
 
@@ -108,7 +107,7 @@ const Src00101 = () => {
               height: '80%',
               minWidth: 40,
             }}
-          ><Icon name="bell" size={20} color="#999" />
+          ><Icon name="bell" size={20} color="#333" />
           </Pressable>
         </View>
 

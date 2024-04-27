@@ -77,7 +77,7 @@ const ECTab = ({
                   <Text style={{
                     fontWeight: 'bold',
                     color: item.id === currentTab ? 'white' : '#dddddd',
-                    fontSize: item.id === currentTab ? 20 : 17,
+                    fontSize: item.id === currentTab ? 18 : 16,
                     textAlign: 'center',
                   }}>
                     {item.name}
