@@ -49,6 +49,7 @@ const Src0010201 = ({ type, dataFilter }) => {
 
     //-------Fetch data-----------------
     const fetchLstMovie = (index, areaCode, gengeCode, yearCode, payCode, releaseCode) => {
+        // console.log('gengeCode', gengeCode);
         CustomAxios().post("/api/exec-no-auth", {
             pro: 'NTH_MV_SEL_MVL_002',
             data: [index, type, areaCode, gengeCode, yearCode, payCode, releaseCode]
