@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import TTHeader from '../../components/TTHeader';
 import Color from '../../assest/colors';
 import RNRestart from 'react-native-restart';
-import { TOKEN, USERNAME, USER, LOGO } from '../../constants';
+import { ACCESS_TOKEN, USERNAME, USER, LOGO } from '../../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Src00105 = () => {

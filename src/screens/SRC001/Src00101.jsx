@@ -8,6 +8,7 @@ import ECTab from '../../components/ECTab';
 import Src0010101 from '../components/Src0010101';
 import CustomAxios from '../../helpers/FetchApi';
 
+//Trang chu
 const Src00101 = () => {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +23,7 @@ const Src00101 = () => {
       })
         .then(res => {
           if (res.data && res.data[0]) {
+            console.log(res.data[0]);
             const lst0 = [{
               id: 0,
               name: 'Đề xuất',

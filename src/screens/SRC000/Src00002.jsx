@@ -5,7 +5,9 @@ import { useNavigation } from '@react-navigation/native';
 import CustomAxios from '../../helpers/FetchApi';
 import Loading from '../../components/TTLoading';
 import Color from '../../assest/colors';
+import { PROJECT } from '../../constants';
 
+// Register screen
 const Register = () => {
     const navigation = useNavigation();
     const [isFetching, setIsFetching] = useState(false);
@@ -72,8 +74,8 @@ const Register = () => {
             //Call API
             setIsFetching(true);
             const response = await CustomAxios().post('api/register', {
-                pro: 'EC_SYS_MBI_INS_USER001_001_0',
-                data: [username, password, username]
+                pro: 'NTH_MV_INS_USR_001',
+                data: [username, password, PROJECT]
             });
             setIsFetching(false);
             console.log(response);

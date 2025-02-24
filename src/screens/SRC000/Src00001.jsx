@@ -8,7 +8,7 @@ import NetInfo from "@react-native-community/netinfo";
 import CustomAxios from '../../helpers/FetchApi';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { REFRESH_TOKEN, TOKEN, USER, USERNAME } from '../../constants';
+import { REFRESH_TOKEN, ACCESS_TOKEN, USER, USERNAME, PROJECT } from '../../constants';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import RefreshToken from '../../helpers/RefreshToken';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +17,7 @@ import Color from '../../assest/colors';
 import messaging from '@react-native-firebase/messaging';
 import Loading from '../../components/TTLoading';
 
-//Login
+//Login screen
 const Src00001 = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
@@ -49,16 +49,19 @@ const Src00001 = () => {
     const loginUser = async () => {
         setIsFetching(true);
         try {
-            await messaging().registerDeviceForRemoteMessages();
-            const tokenFcm = await messaging().getToken();
-            console.log('TokenFcm--------------->: ', tokenFcm);
-            AsyncStorage.setItem('fcmToken', tokenFcm);
+            // await messaging().registerDeviceForRemoteMessages();
+            // const tokenDeviceID = await messaging().getToken();
+            // console.log('TokenFcm--------------->: ', tokenFcm);
+            // AsyncStorage.setItem('fcmToken', tokenFcm);
+            // const deviceID = await messaging().getApnsToken();
+            const tokenFcm = 'fcmToken';
+            const deviceID = 'Joy4';
             const body = {
-                pro: 'null',
-                data: [username, password, tokenFcm]
+                pro: 'NTH_S_LOGIN',
+                data: [username, password, PROJECT, tokenFcm, deviceID],
             };
             console.log('body: ', body);
-            const response = await CustomAxios().post('api/login-default', body);
+            const response = await CustomAxios().post('api/login', body);
             if (response) {
                 if (response.error) {
                     console.log('response.message: ', response.message);
@@ -67,7 +70,7 @@ const Src00001 = () => {
                 } else {
                     if (response.data && response.data.accessToken && response.data.user) {
                         console.log('AccessToken-------->: ', response.data.accessToken);
-                        await AsyncStorage.setItem(TOKEN, response.data.accessToken);
+                        await AsyncStorage.setItem(ACCESS_TOKEN, response.data.accessToken);
                         await AsyncStorage.setItem(REFRESH_TOKEN, response.data.refreshToken);
                         await AsyncStorage.setItem(USERNAME, username);
                         await AsyncStorage.setItem(USER, JSON.stringify(response.data.user));

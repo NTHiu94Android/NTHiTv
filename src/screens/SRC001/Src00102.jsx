@@ -8,6 +8,7 @@ import Src0010201 from '../components/Src0010201';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 
+//Kho phim
 const Src00102 = () => {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);

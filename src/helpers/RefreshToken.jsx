@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CustomAxios from './FetchApi';
-import { TOKEN } from '../constants';
+import { ACCESS_TOKEN } from '../constants';
 
 const RefreshToken = async ({ token, username, calback, logout }) => {
     try {
@@ -13,7 +13,7 @@ const RefreshToken = async ({ token, username, calback, logout }) => {
                     logout();
                 } else {
                     if (response.data && response.data.accessToken) {
-                        await AsyncStorage.setItem(TOKEN, response.data.accessToken);
+                        await AsyncStorage.setItem(ACCESS_TOKEN, response.data.accessToken);
                         console.log('refresh token success', response.data.accessToken);
                         calback();
                         return;
