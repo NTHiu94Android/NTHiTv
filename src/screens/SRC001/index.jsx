@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import messaging from '@react-native-firebase/messaging';
+// import messaging from '@react-native-firebase/messaging';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Color from '../../assest/colors';
 import Src00101 from './Src00101';
@@ -14,32 +14,32 @@ const Tab = createBottomTabNavigator();
 const SRC001 = () => {
   useEffect(() => {
     //-----------------------request permission-----------------------
-    const requestUserPermission = async () => {
-      const authStatus = await messaging().requestPermission();
-      const enabled =
-        authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-        authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-      if (enabled) {
-        console.log('Authorization status:', authStatus);
-      }
-    }
-    requestUserPermission();
+    // const requestUserPermission = async () => {
+    //   const authStatus = await messaging().requestPermission();
+    //   const enabled =
+    //     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+    //     authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+    //   if (enabled) {
+    //     console.log('Authorization status:', authStatus);
+    //   }
+    // }
+    // requestUserPermission();
 
     //-----------------------get token-----------------------
-    const GetToken = async () => {
-      await messaging().registerDeviceForRemoteMessages();
-      const token = await messaging().getToken();
-      console.log('TokenFcm--------------->: ', token);
-    }
-    GetToken();
+    // const GetToken = async () => {
+    //   await messaging().registerDeviceForRemoteMessages();
+    //   const token = await messaging().getToken();
+    //   console.log('TokenFcm--------------->: ', token);
+    // }
+    // GetToken();
 
     //-----------------------unsubcribe-----------------------
-    const unsubscribe = messaging().onMessage(async remoteMessage => {
-      const data = remoteMessage.data;
-      const datajson = JSON.parse(data.message);
-      console.log('A new FCM message arrived!: ', datajson);
-    });
-    return unsubscribe;
+    // const unsubscribe = messaging().onMessage(async remoteMessage => {
+    //   const data = remoteMessage.data;
+    //   const datajson = JSON.parse(data.message);
+    //   console.log('A new FCM message arrived!: ', datajson);
+    // });
+    // return unsubscribe;
   }, []);
 
   return (

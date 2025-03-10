@@ -14,7 +14,7 @@ import RefreshToken from '../../helpers/RefreshToken';
 import { useDispatch, useSelector } from 'react-redux';
 import { UPDATE_CUSTOMER } from '../../redux/actions';
 import Color from '../../assest/colors';
-import messaging from '@react-native-firebase/messaging';
+// import messaging from '@react-native-firebase/messaging';
 import Loading from '../../components/TTLoading';
 
 //Login screen
