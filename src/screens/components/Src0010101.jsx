@@ -34,34 +34,34 @@ const Src0010101 = ({ type }) => {
     }, []);
 
     useEffect(() => {
-        // fetchDataScreen(type);
-        setLstPhimVip(dataHot);
-        setLstPhimFree(dataHot);
-        setLstPhimBo(dataHot);
-        setLstPhimLe(dataHot);
-        setLstPhimHoatHinh(dataHot);
+        fetchDataScreen(type);
+        // setLstPhimVip(dataHot);
+        // setLstPhimFree(dataHot);
+        // setLstPhimBo(dataHot);
+        // setLstPhimLe(dataHot);
+        // setLstPhimHoatHinh(dataHot);
 
-        setLstCoTrang(dataHot);
-        setLstHienDai(dataHot);
-        setLstTinhYeu(dataHot);
-        setLstGiaDinh(dataHot);
-        setLstHaiHuoc(dataHot);
-        setLstHanhDong(dataHot);
+        // setLstCoTrang(dataHot);
+        // setLstHienDai(dataHot);
+        // setLstTinhYeu(dataHot);
+        // setLstGiaDinh(dataHot);
+        // setLstHaiHuoc(dataHot);
+        // setLstHanhDong(dataHot);
 
-        const lstTemp = [];
-        dataHot.map((item, index) => {
-            const it = {
-                _id: item._id,
-                image_url: item.image_url,
-            }
-            lstTemp.push(it);
-        });
-        setLstHot(lstTemp);
+        // const lstTemp = [];
+        // dataHot.map((item, index) => {
+        //     const it = {
+        //         _id: item._id,
+        //         image_url: item.image_url,
+        //     }
+        //     lstTemp.push(it);
+        // });
+        // setLstHot(lstTemp);
     }, []);
 
     //----------------- Fetch data -----------------
     const fetchDataScreen = (code) => {
-        // console.log('code', code);
+        console.log('code', code);
         CustomAxios().post("/api/exec-no-auth", {
             pro: 'NTH_MV_SEL_MVL_001',
             data: [code]
