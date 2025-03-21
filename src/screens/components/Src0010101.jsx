@@ -68,7 +68,7 @@ const Src0010101 = ({ type }) => {
         })
             .then(res => {
                 if (res && res.error) {
-                    console.log(res.error);
+                    console.log("Error NTH_MV_SEL_MVL_001", res.error);
                     return;
                 }
                 if (res && res.data) {

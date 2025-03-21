@@ -62,6 +62,8 @@ const ECTab = ({
                   } else {
                     index = item.id - 1;
                   }
+                  console.log("itemID: ", item.id);
+                  
                   flatlistRef.current.scrollToIndex({ index });
                   setCurrentTab(item.id);
                   onChangeTab && onChangeTab(item.id);

@@ -4,6 +4,7 @@ export const REFRESH_TOKEN = 'refresh_token';
 export const USER = 'user';
 export const USERNAME = 'username';
 export const API_URL = 'https://nthgroups.onrender.com/';
+// export const API_URL = "http://10.0.2.2:3000/"
 export const LOGO = 'https://reactnative.dev/img/tiny_logo.png';
 export const AVATAR_DEFAULT = 'https://www.vietnamfineart.com.vn/wp-content/uploads/2023/07/anh-gai-xinh-vn-3.jpg';
 export const BACKGROUND_CHAT = 'https://wallpapers.com/images/hd/pink-bear-whatsapp-chat-2xmt8gzdw3usnsvl.jpg';

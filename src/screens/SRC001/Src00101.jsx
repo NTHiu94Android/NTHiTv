@@ -23,7 +23,7 @@ const Src00101 = () => {
       })
         .then(res => {
           if (res.data && res.data[0]) {
-            console.log(res.data[0]);
+            console.log("NTH_MV_SEL_TPE_001: ", res.data[0]);
             const lst0 = [{
               id: 0,
               name: 'Đề xuất',
@@ -45,7 +45,7 @@ const Src00101 = () => {
           setIsLoading(false);
         })
         .catch(err => {
-          console.log(err);
+          console.log("Error: ", err);
           setIsLoading(false);
         });
     };
