@@ -53,13 +53,15 @@ const SRC001 = () => {
           } else if (route.name === 'Kho phim') {
             iconName = focused
               ? 'video-collection' : 'video-collection';
-          } else if (route.name === 'Yêu thích') {
-            iconName = focused
-              ? 'bookmarks' : 'bookmarks'; 
-          } else if (route.name === 'Cá nhân') {
-            iconName = focused
-              ? 'person' : 'person';
-          }
+          } 
+          // else if (route.name === 'Yêu thích') {
+          //   iconName = focused
+          //     ? 'bookmarks' : 'bookmarks'; 
+          // } 
+          // else if (route.name === 'Cá nhân') {
+          //   iconName = focused
+          //     ? 'person' : 'person';
+          // }
           return <Icon name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: Color.mainColor,
@@ -75,8 +77,8 @@ const SRC001 = () => {
     >
       <Tab.Screen options={{ headerShown: false }} name="Trang chủ" component={Src00101} />
       <Tab.Screen options={{ headerShown: false }} name="Kho phim" component={Src00102} />
-      <Tab.Screen options={{ headerShown: false }} name="Yêu thích" component={Src00103} />
-      <Tab.Screen options={{ headerShown: false }} name="Cá nhân" component={Src00104} />
+      {/* <Tab.Screen options={{ headerShown: false }} name="Yêu thích" component={Src00103} /> */}
+      {/* <Tab.Screen options={{ headerShown: false }} name="Cá nhân" component={Src00104} /> */}
     </Tab.Navigator>
   )
 }
