@@ -70,7 +70,7 @@ const Src00101 = () => {
           paddingHorizontal: 10,
         }}>
           <Image
-            source={require('../../assest/images/logo_iqiyi.png')}
+            source={require('../../assest/images/ic_nthitv.png')}
             resizeMode='contain'
             style={{ width: 40, height: '100%', }}
           />

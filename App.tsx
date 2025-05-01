@@ -31,7 +31,7 @@ const App = () => {
       key: 'one',
       title: 'Title 1',
       text: 'Description.\nSay something cool',
-      image: require('./src/assest/images/logo_iqiyi.png'),
+      image: require('./src/assest/images/ic_nthitv.png'),
       backgroundColor: '#59b2ab',
     },
   ];
